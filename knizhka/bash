@@ -1,0 +1,8 @@
+git branch -M main
+git push -u origin main
+git init  # Создаёт локальный репозиторий
+git add .  # Добавляет все файлы в коммит
+git commit -m "Первый коммит"  # Фиксирует изменения
+git branch -M main  # Переименовывает ветку в main
+git remote add origin https://github.com/heewke/knizka.git  # Связывает с GitHub
+git push -u origin main  # Загружает файлы

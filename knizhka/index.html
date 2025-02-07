@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>yeyey</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Подключаем Google Fonts для красивого шрифта -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Подключаем jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Подключаем turn.js (предполагается локальное хранение библиотеки) -->
+  <script src="js/turn.min.js"></script>
+  
+  <style>
+    /* Стили для всей страницы */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(45deg, #000000, #000000);
+    }
+    
+    /* Контейнер книги */
+    #flipbook {
+      width: 90%;
+      height: 90%;
+      margin: 5% auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Стили для страниц книги */
+    .page {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 24px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Фоновое изображение для текстуры бумаги (опционально) */
+      background-image: url('images/5274038738353252719.jpg');
+      background-size: cover;
+    }
+    
+    /* Оформление обложек */
+    .page.cover {
+      background-color: #d3d3d3;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      background-image: none; /* Для обложек убираем текстуру */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .page.cover h1 {
+      margin: 0;
+      font-size: 48px;
+    }
+    
+    .page.cover p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+  
+  <script>
+    $(document).ready(function(){
+      // Инициализация книги с дополнительными опциями для сглаживания анимации
+      $("#flipbook").turn({
+        width: $("#flipbook").width(),
+        height: $("#flipbook").height(),
+        autoCenter: true,
+        display: 'double',
+        acceleration: true,
+        gradients: true
+      });
+      
+      // Обработчик клика для перелистывания страниц
+      $("#flipbook").click(function(e){
+          var offset = $(this).offset();
+          var width = $(this).width();
+          var x = e.pageX - offset.left;
+          if (x > width / 2) {
+              $(this).turn("next");
+          } else {
+              $(this).turn("previous");
+          }
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Контейнер книги -->
+  <div id="flipbook">
+      <!-- Первая страница – обложка -->
+      <div class="page cover">
+          <h1>kniga</h1>
+      </div>
+      <!-- Страницы книги -->
+      <div class="page">ct1</div>
+      <div class="page">ct2</div>
+      <div class="page">ct3</div>
+      <div class="page">ct4</div>
+      <!-- Последняя страница – задняя обложка -->
+      <div class="page cover">zad</div>
+  </div>
+</body>
+</html>
